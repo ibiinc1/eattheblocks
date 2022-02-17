@@ -21,7 +21,7 @@ contract Arbitrage {
     address token1, 
     uint amount0, 
     uint amount1
-  ) external {
+  ) external 
     address pairAddress = IUniswapV2Factory(pancakeFactory).getPair(token0, token1);
     require(pairAddress != address(0), 'This pool does not exist');
     IUniswapV2Pair(pairAddress).swap(
