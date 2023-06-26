@@ -49,8 +49,13 @@ contract Arbitrage {
     ); 
     require(_amount0 == 0 || _amount1 == 0);
 
-    path[0] = _amount0 == 0 ? token1 : token0;
-    path[1] = _amount0 == 0 ? token0 : token1;
+    // correction on getAmountsIn
+     path[0] = _amount0 == 0 ? token0 : token1;
+     path[1] = _amount0 == 0 ? token1 : token0;
+// have to create defferent peth for bekeryswap 
+address[] memory path1 = new address[](2);
+     path1[0] = path[1];
+     path1[1] = path[0];
 
     IERC20 token = IERC20(_amount0 == 0 ? token1 : token0);
     
